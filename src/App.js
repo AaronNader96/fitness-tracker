@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { ChakraProvider, Box, Container } from "@chakra-ui/react";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Workouts from "./pages/Workouts";
 
 function App() {
+  const [isLoggedIn, setLoggedIn] = useState(false);
+
+  const handleLoginToggle = () => {
+    setLoggedIn(!isLoggedIn);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ChakraProvider>
+      <Box minH="100vh" bg="gray.100">
+        <Header isLoggedIn={isLoggedIn} onLoginToggle={handleLoginToggle} />
+        <Container maxW="container.xl" py={10}>
+          <Workouts />
+        </Container>
+        <Footer />
+      </Box>
+    </ChakraProvider>
   );
 }
 
