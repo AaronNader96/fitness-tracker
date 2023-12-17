@@ -36,7 +36,7 @@ const Workouts = () => {
   const [workoutType, setWorkoutType] = useState("strength");
   const [workoutDuration, setWorkoutDuration] = useState("");
   const [calorieGoal, setCalorieGoal] = useState(2000);
-  const [fatLossGoal, setFatLossGoal] = useState(1); // Example: 1 lb per week
+  const [fatLossGoal, setFatLossGoal] = useState(1);
   const [proteinGoalPercentage, setProteinGoalPercentage] = useState(0.15);
   const [macros, setMacros] = useState({ protein: 0, carbs: 0, fats: 0 });
   const [createdBy, setCreatedBy] = useState("");
@@ -80,8 +80,8 @@ const Workouts = () => {
       (acc, workout) => {
         const caloriesBurned = calculateCaloriesBurned(workout.duration);
         acc.protein += caloriesBurned * proteinGoalPercentage;
-        acc.carbs += caloriesBurned * 0.5; // Example: 50% of calories from carbs
-        acc.fats += caloriesBurned * 0.35; // Example: 35% of calories from fats
+        acc.carbs += caloriesBurned * 0.5;
+        acc.fats += caloriesBurned * 0.35;
         return acc;
       },
       { protein: 0, carbs: 0, fats: 0 }
@@ -91,7 +91,6 @@ const Workouts = () => {
   };
 
   const calculateCaloriesBurned = (duration) => {
-    // Example: Assume 5 calories burned per minute of exercise
     const caloriesPerMinute = 5;
     return duration * caloriesPerMinute;
   };
@@ -136,7 +135,7 @@ const Workouts = () => {
 
   const handleStopTimer = () => {
     if (timerRunning) {
-      const elapsedTime = (Date.now() - timerStartTime + timerPauseTime) / 1000; // Convert to seconds
+      const elapsedTime = (Date.now() - timerStartTime + timerPauseTime) / 1000;
       setWorkoutDuration(formatTime(elapsedTime));
       setTimerRunning(false);
       setTimerPaused(false);
@@ -330,7 +329,7 @@ const Workouts = () => {
             </Text>
             <HStack mb={4}>
               <CircularProgress
-                value={elapsedTime * 10} // Multiply by 10 to get a percentage value
+                value={elapsedTime * 10}
                 size="100px"
                 thickness="8px"
                 color="teal"
